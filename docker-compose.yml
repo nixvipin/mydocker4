@@ -1,0 +1,22 @@
+version: '3.6'
+services:
+  mysql:
+    container_name: mysql
+    image: mymysql
+    command: mysqld --user=root
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=root
+      - MYSQL_DATABASE=mydb
+  tomcat:
+    container_name: tomcat
+    image: tomcat
+    restart: always
+    ports:
+      - 8001:8080
+    volumes:
+      - /data/mydocker3/deployment/employees.war:/usr/local/tomcat/webapps/myapp.war
+    links:
+      - mysql
+
