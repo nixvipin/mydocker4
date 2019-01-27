@@ -12,11 +12,13 @@ services:
   tomcat:
     container_name: tomcat
     image: tomcat
-    restart: always
+    #restart: always
     ports:
       - 8001:8080
     volumes:
-      - /data/mydocker3/deployment/employees.war:/usr/local/tomcat/webapps/myapp.war
+      - /data/mydocker4/deployment/employees.war:/usr/local/tomcat/webapps/myapp.war
     links:
-      - mysql
+      - mysql:mysql
+    depends_on:
+      - 'mysql'
 
